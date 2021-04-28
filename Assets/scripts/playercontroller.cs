@@ -32,6 +32,11 @@ public class playercontroller : MonoBehaviour
             RB.velocity = new Vector2(RB.velocity.x, upForce);
         }
 
+        if(Input.GetButtonUp("Jump") && RB.velocity.y > 0)
+        {
+            RB.velocity = new Vector2(RB.velocity.x, RB.velocity.y * .5f);
+        }
+
         if (move > 0 && !FacingRight)
 			{
 				Flip();

@@ -242,7 +242,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   speed: 5
-  upForce: 5
+  upForce: 6
 --- !u!212 &1334300638
 SpriteRenderer:
   m_ObjectHideFlags: 0
