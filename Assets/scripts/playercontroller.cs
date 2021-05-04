@@ -7,6 +7,7 @@ public class playercontroller : MonoBehaviour
     [SerializeField] private LayerMask groundLayerMask;
     public float speed;
     public float upForce;
+    public int health = 100;
 
     private bool FacingRight = true;
     private BoxCollider2D boxCollider2d;
@@ -69,5 +70,15 @@ public class playercontroller : MonoBehaviour
         FacingRight = !FacingRight;
 
         transform.Rotate(0f, 180f, 0f);
+    }
+
+    public void TakeDamage (int playerDamage)
+    {
+        health -= playerDamage;
+
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
