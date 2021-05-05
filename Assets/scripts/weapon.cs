@@ -5,8 +5,11 @@ using UnityEngine;
 public class weapon : MonoBehaviour
 {
 
+    public float fireRate = 0.1f;
     public Transform firePoint;
     public GameObject bulletPrefab;
+
+    float timeUntilFire;
 
     void Start()
     {
@@ -15,9 +18,10 @@ public class weapon : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButton("Fire1") && timeUntilFire < Time.time)
         {
             Shoot();
+            timeUntilFire = Time.time + fireRate;
         }
 
     }
