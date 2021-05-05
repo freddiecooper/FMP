@@ -11,7 +11,7 @@ public class playercontroller : MonoBehaviour
 
     private bool FacingRight = true;
     private BoxCollider2D boxCollider2d;
-    private Rigidbody2D RB;
+    private Rigidbody2D rb;
 
     private void Awake()
     {
@@ -20,22 +20,22 @@ public class playercontroller : MonoBehaviour
 
     void Start()
     {
-        RB = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
         float move = Input.GetAxisRaw("Horizontal");
-        RB.velocity = new Vector2( move * speed, RB.velocity.y);
+        rb.velocity = new Vector2( move * speed, rb.velocity.y);
 
         if(IsGrounded() && Input.GetButtonDown("Jump"))
         {
-            RB.velocity = new Vector2(RB.velocity.x, upForce);
+            rb.velocity = new Vector2(rb.velocity.x, upForce);
         }
 
-        if(Input.GetButtonUp("Jump") && RB.velocity.y > 0)
+        if(Input.GetButtonUp("Jump") && rb.velocity.y > 0)
         {
-            RB.velocity = new Vector2(RB.velocity.x, RB.velocity.y * .5f);
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * .5f);
         }
 
         if (move > 0 && !FacingRight)
