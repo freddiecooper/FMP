@@ -9,8 +9,14 @@ public class Enemy : MonoBehaviour
     public float Range;
     public Transform Target;
     public GameObject DetectLight;
+    public GameObject Gun;
+    public GameObject Bullet;
+    public float fireRate = 0.3f;
+    public Transform firePoint;
 
     bool Detected = false;
+
+    float timeUntilFire;
 
     Vector2 Direction;
 
@@ -42,12 +48,14 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         Vector2 targetPos = Target.position;
+
         Direction = targetPos - (Vector2)transform.position;
+        
         RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, Direction, Range);
 
         if(raycastHit)
         {
-            if(raycastHit.collider.gameObject.tag == "ground")
+            if(raycastHit.collider.gameObject.tag == "Player")
             {
                 if(Detected == false)
                 {
@@ -66,6 +74,23 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
+
+        if(Detected)
+        {
+            Gun.transform.up = Direction;
+            if (timeUntilFire < Time.time)
+            {
+                Shoot();
+                timeUntilFire = Time.time + fireRate;
+            }
+        }
+
+        
+    }
+
+    void Shoot()
+    {
+        Instantiate(Bullet, firePoint.position, firePoint.rotation);
     }
 
     void OnDrawGizmosSelected()
