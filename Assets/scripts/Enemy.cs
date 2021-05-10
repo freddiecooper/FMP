@@ -61,7 +61,6 @@ public class Enemy : MonoBehaviour
                 {
                     Detected = true;
                     DetectLight.GetComponent<SpriteRenderer>().color = Color.red;
-                    Debug.Log("hello");
                 }
             }
 
@@ -84,8 +83,6 @@ public class Enemy : MonoBehaviour
                 timeUntilFire = Time.time + fireRate;
             }
         }
-
-        
     }
 
     void Shoot()

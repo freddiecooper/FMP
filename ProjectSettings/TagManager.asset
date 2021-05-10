@@ -15,9 +15,9 @@ TagManager:
   - 
   - 
   - ground
-  - 
-  - 
-  - 
+  - enemies
+  - player
+  - enemy raycast
   - 
   - 
   - 
