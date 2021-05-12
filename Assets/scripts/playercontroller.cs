@@ -8,6 +8,9 @@ public class playercontroller : MonoBehaviour
     public float speed;
     public float upForce;
     public int health = 100;
+    public int coins = 0;
+    public Transform buyPoint;
+    public GameObject coinPrefab;
 
     private bool FacingRight = true;
     private BoxCollider2D boxCollider2d;
@@ -20,6 +23,7 @@ public class playercontroller : MonoBehaviour
 
     void Start()
     {
+        //anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -82,5 +86,33 @@ public class playercontroller : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if(other.gameObject.CompareTag("coin"))
+        {
+            coins++;
+            //keyAmount.text = "coins: " + coins;
+            Destroy(other.gameObject);
+        }
+
+        if(other.gameObject.CompareTag("shop") && coins >=4)
+        {
+            if(Input.GetKey ("b"))
+            {
+                weaponDrop();
+                coins -= 4;
+            }
+            
+        }
+    }
+
+    void weaponDrop()
+    {
+        Instantiate(coinPrefab, buyPoint.position, buyPoint.rotation);
+        Instantiate(coinPrefab, buyPoint.position, buyPoint.rotation);
+        Instantiate(coinPrefab, buyPoint.position, buyPoint.rotation);
+        Instantiate(coinPrefab, buyPoint.position, buyPoint.rotation);
+        Instantiate(coinPrefab, buyPoint.position, buyPoint.rotation);
     }
 }
