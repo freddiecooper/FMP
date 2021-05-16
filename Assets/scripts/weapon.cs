@@ -9,6 +9,8 @@ public class weapon : MonoBehaviour
     public Transform firePoint;
     public GameObject bulletPrefab;
 
+    bool touching = false;
+
     float timeUntilFire;
 
     void Start()
@@ -18,7 +20,8 @@ public class weapon : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButton("Fire1") && timeUntilFire < Time.time)
+
+        if (Input.GetButton("Fire1") && timeUntilFire < Time.time && touching)
         {
             Shoot();
             timeUntilFire = Time.time + fireRate;
@@ -29,5 +32,23 @@ public class weapon : MonoBehaviour
     void Shoot()
     {
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if(other.gameObject.CompareTag("Player"))
+            {
+                if(touching == false)
+                {
+                    touching = true;
+                }
+            }
+            else
+            {
+                if(touching == true)
+                {
+                    touching = false;
+                }
+            }
     }
 }

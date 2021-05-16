@@ -8,7 +8,7 @@ public class playercontroller : MonoBehaviour
     public float speed;
     public float upForce;
     public int health = 100;
-    public int coins = 0;
+    public static int coins = 0;
     public Transform buyPoint;
     public GameObject coinPrefab;
 
@@ -91,12 +91,13 @@ public class playercontroller : MonoBehaviour
     {
         if(other.gameObject.CompareTag("coin"))
         {
+            Debug.Log("hi");
             coins++;
             //keyAmount.text = "coins: " + coins;
             Destroy(other.gameObject);
         }
 
-        if(other.gameObject.CompareTag("shop") && coins >=4)
+        /*if(other.gameObject.CompareTag("shop") && coins >=4)
         {
             if(Input.GetKey ("b"))
             {
@@ -104,15 +105,15 @@ public class playercontroller : MonoBehaviour
                 coins -= 4;
             }
             
-        }
+        }*/
     }
 
-    void weaponDrop()
+    /*void weaponDrop()
     {
         Instantiate(coinPrefab, buyPoint.position, buyPoint.rotation);
         Instantiate(coinPrefab, buyPoint.position, buyPoint.rotation);
         Instantiate(coinPrefab, buyPoint.position, buyPoint.rotation);
         Instantiate(coinPrefab, buyPoint.position, buyPoint.rotation);
         Instantiate(coinPrefab, buyPoint.position, buyPoint.rotation);
-    }
+    }*/
 }

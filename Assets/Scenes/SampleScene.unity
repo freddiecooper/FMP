@@ -595,7 +595,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3473019547527430399, guid: f3a8e948f47c06c43aa3975e1ab42608, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3473019547527430399, guid: f3a8e948f47c06c43aa3975e1ab42608, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -670,6 +670,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfbe62a7b34ce524a9bc8291dd7cf8d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buyPoint: {fileID: 1870400314}
+  coinPrefab: {fileID: 7879173155976969253, guid: 8122aa7b1e420c945bf1f6e1ec9f9f90, type: 3}
 --- !u!61 &638094201
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1027,7 +1029,6 @@ MonoBehaviour:
   speed: 5
   upForce: 6
   health: 100
-  coins: 0
   buyPoint: {fileID: 1870400314}
   coinPrefab: {fileID: 7879173155976969253, guid: 8122aa7b1e420c945bf1f6e1ec9f9f90, type: 3}
 --- !u!212 &1334300638
@@ -1094,7 +1095,7 @@ Transform:
   m_Children:
   - {fileID: 1475869891}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1334300640
 BoxCollider2D:

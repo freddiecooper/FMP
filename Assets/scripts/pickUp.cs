@@ -17,12 +17,6 @@ public class pickUp : MonoBehaviour
 
     void Update()
     {
-
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-
         if (canGrab)
         {
             if(Input.GetKeyDown(KeyCode.F))
@@ -30,7 +24,10 @@ public class pickUp : MonoBehaviour
                 PickUp();
             }
         }
+    }
 
+    private void OnTriggerStay2D(Collider2D other)
+    {
         if(other.gameObject.CompareTag("weapon"))
         {
             Debug.Log("can pick up");
@@ -43,10 +40,10 @@ public class pickUp : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    /*private void OnTriggerEnter2D(Collider2D other)
     {
         
-    }
+    }*/
 
     private void PickUp()
     {
