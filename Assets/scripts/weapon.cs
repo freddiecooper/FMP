@@ -36,19 +36,32 @@ public class weapon : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if(other.gameObject.CompareTag("Player"))
+            if(other.gameObject.CompareTag("Player"))
             {
                 if(touching == false)
                 {
                     touching = true;
                 }
             }
-            else
+            /*else
             {
                 if(touching == true)
                 {
                     touching = false;
                 }
-            }
+            }*/
     }
+
+    /*private void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.gameObject.CompareTag("Player"))
+            {
+                touching = false;
+
+                if(touching == true)
+                {
+                    touching = false;
+                }
+            }
+    }*/
 }

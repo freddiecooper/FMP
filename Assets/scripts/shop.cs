@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class shop : MonoBehaviour
 {
-
     public Transform buyPoint;
-    public GameObject coinPrefab;
-    public static int  Coins;
+    public GameObject weaponPrefab;
 
     void Start()
     {
-        Coins = playercontroller.coins;
+
     }
 
     void Update()
@@ -21,12 +19,13 @@ public class shop : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if(other.gameObject.CompareTag("Player") && Coins >=4)
+        if(other.gameObject.CompareTag("Player") && (playercontroller.coins >= 4))
         {
             Debug.Log("touching");
             if(Input.GetKey ("b"))
             {
                 weaponDrop();
+                playercontroller.coins -= 4;
             }
             
         }
@@ -34,10 +33,13 @@ public class shop : MonoBehaviour
 
     void weaponDrop()
     {
-        Instantiate(coinPrefab, buyPoint.position, buyPoint.rotation);
-        Instantiate(coinPrefab, buyPoint.position, buyPoint.rotation);
-        Instantiate(coinPrefab, buyPoint.position, buyPoint.rotation);
-        Instantiate(coinPrefab, buyPoint.position, buyPoint.rotation);
-        Instantiate(coinPrefab, buyPoint.position, buyPoint.rotation);
+
+        Instantiate(weaponPrefab, buyPoint.position, buyPoint.rotation);
+
+        //Instantiate(coinPrefab, buyPoint.position, buyPoint.rotation);
+        //Instantiate(coinPrefab, buyPoint.position, buyPoint.rotation);
+        //Instantiate(coinPrefab, buyPoint.position, buyPoint.rotation);
+        //Instantiate(coinPrefab, buyPoint.position, buyPoint.rotation);
+        //Instantiate(coinPrefab, buyPoint.position, buyPoint.rotation);
     }
 }

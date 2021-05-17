@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class pistolEnemy : MonoBehaviour
 {
     public int playerDamage = 20;
     public int health = 100;
@@ -11,8 +11,11 @@ public class Enemy : MonoBehaviour
     public GameObject DetectLight;
     public GameObject Gun;
     public GameObject Bullet;
-    public float fireRate = 0.3f;
+    public float fireRate = 0.6f;
     public Transform firePoint;
+    public Transform coinDropPoint;
+    public Transform coinDropPoint2;
+    public GameObject coinPrefab;
 
     bool Detected = false;
 
@@ -27,6 +30,8 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+            Instantiate(coinPrefab, coinDropPoint.position, coinDropPoint.rotation);
+            Instantiate(coinPrefab, coinDropPoint2.position, coinDropPoint2.rotation);
         }
     }
 
