@@ -298,7 +298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDamage: 20
   health: 100
-  Range: 5
+  Range: 7
   Target: {fileID: 0}
   DetectLight: {fileID: 6080531105623857520}
   Gun: {fileID: 6080531106779794365}

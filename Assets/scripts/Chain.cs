@@ -13,7 +13,7 @@ public class Chain : MonoBehaviour
 
     private LineRenderer line;
     private Vector3 velocity;
-    private bool pull = false;
+    public bool pull = false;
     private bool update = false;
 
 
@@ -39,7 +39,6 @@ public class Chain : MonoBehaviour
         update = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
 

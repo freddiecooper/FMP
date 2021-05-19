@@ -12,6 +12,7 @@ public class playercontroller : MonoBehaviour
     public static int coins = 0;
     public Transform buyPoint;
     public GameObject coinPrefab;
+    public Chain pull;
 
     private bool FacingRight = true;
     private BoxCollider2D boxCollider2d;
@@ -30,23 +31,26 @@ public class playercontroller : MonoBehaviour
 
     void Update()
     {
-        
-        float move = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2( move * speed, rb.velocity.y);
+        if(pull.pull == false)
+        {
+            float move = Input.GetAxisRaw("Horizontal");
+            rb.velocity = new Vector2( move * speed, rb.velocity.y);
+            if (move > 0 && !FacingRight)
+		    {
+		    	Flip();
+		    }
+		    else if (move < 0 && FacingRight)
+		    {
+		    	Flip();
+		    }
+        }
 
         if(IsGrounded() && Input.GetButtonDown("Jump"))
         {
             rb.velocity = new Vector2(rb.velocity.y, upForce);
         }
 
-        if (move > 0 && !FacingRight)
-		{
-			Flip();
-		}
-		else if (move < 0 && FacingRight)
-		{
-			Flip();
-		}
+        
 
     }
     

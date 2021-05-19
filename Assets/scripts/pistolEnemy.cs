@@ -64,6 +64,7 @@ public class pistolEnemy : MonoBehaviour
             {
                 if(Detected == false)
                 {
+                    Debug.Log("hello");
                     Detected = true;
                     DetectLight.GetComponent<SpriteRenderer>().color = Color.red;
                 }

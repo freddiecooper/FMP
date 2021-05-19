@@ -21,7 +21,7 @@ public class weapon : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetButton("Fire1") && timeUntilFire < Time.time && touching)
+        if (Input.GetButtonDown("Fire1") && timeUntilFire < Time.time && touching)
         {
             Shoot();
             timeUntilFire = Time.time + fireRate;
