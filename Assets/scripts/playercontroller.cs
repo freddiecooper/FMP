@@ -7,6 +7,7 @@ public class playercontroller : MonoBehaviour
     [SerializeField] private LayerMask groundLayerMask;
     public float speed;
     public float upForce;
+    public float keep;
     public int health = 100;
     public static int coins = 0;
     public Transform buyPoint;
@@ -29,27 +30,24 @@ public class playercontroller : MonoBehaviour
 
     void Update()
     {
+        
         float move = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2( move * speed, rb.velocity.y);
 
         if(IsGrounded() && Input.GetButtonDown("Jump"))
         {
-            rb.velocity = new Vector2(rb.velocity.x, upForce);
-        }
-
-        if(Input.GetButtonUp("Jump") && rb.velocity.y > 0)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * .5f);
+            rb.velocity = new Vector2(rb.velocity.y, upForce);
         }
 
         if (move > 0 && !FacingRight)
-			{
-				Flip();
-			}
-			else if (move < 0 && FacingRight)
-			{
-				Flip();
-			}
+		{
+			Flip();
+		}
+		else if (move < 0 && FacingRight)
+		{
+			Flip();
+		}
+
     }
     
     private bool IsGrounded()
