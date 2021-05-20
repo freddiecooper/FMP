@@ -8,6 +8,8 @@ TagManager:
   - coin
   - shop
   - weapon
+  - assultrifle
+  - pistol
   layers:
   - Default
   - TransparentFX
