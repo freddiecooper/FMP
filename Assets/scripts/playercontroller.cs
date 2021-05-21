@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class playercontroller : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class playercontroller : MonoBehaviour
     public Transform buyPoint;
     public GameObject coinPrefab;
     public Chain pull;
+    public Text coinsText;
 
     private bool FacingRight = true;
     private CapsuleCollider2D capsuleCollider2d;
@@ -121,10 +123,11 @@ public class playercontroller : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
-            SceneManager.LoadScene(game);
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
         }
     }
-    
+
     private void OnTriggerStay2D(Collider2D other)
     {
         if(other.gameObject.CompareTag("coin"))
@@ -133,25 +136,7 @@ public class playercontroller : MonoBehaviour
             coins++;
             //keyAmount.text = "coins: " + coins;
             Destroy(other.gameObject);
+            coinsText.text = coins.ToString("0");
         }
-
-        /*if(other.gameObject.CompareTag("shop") && coins >=4)
-        {
-            if(Input.GetKey ("b"))
-            {
-                weaponDrop();
-                coins -= 4;
-            }
-            
-        }*/
     }
-
-    /*void weaponDrop()
-    {
-        Instantiate(coinPrefab, buyPoint.position, buyPoint.rotation);
-        Instantiate(coinPrefab, buyPoint.position, buyPoint.rotation);
-        Instantiate(coinPrefab, buyPoint.position, buyPoint.rotation);
-        Instantiate(coinPrefab, buyPoint.position, buyPoint.rotation);
-        Instantiate(coinPrefab, buyPoint.position, buyPoint.rotation);
-    }*/
 }

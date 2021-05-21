@@ -12,6 +12,11 @@ public class playgame : MonoBehaviour
          SceneManager.LoadScene(game);
     }
 
+    public void LoadScene2(string menu)
+    { 
+         SceneManager.LoadScene(menu);
+    }
+
     public void QuitGame ()
     {
          Debug.Log ("quit!");

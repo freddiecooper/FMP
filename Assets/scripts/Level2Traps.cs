@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class traps : MonoBehaviour
+public class Level2Traps : MonoBehaviour
 {
     public int playerDamage = 100;
     public Rigidbody2D rb;
-    public string game;
+    public string Level2;
 
     void Start()
     {
@@ -25,7 +25,8 @@ public class traps : MonoBehaviour
         if(player != null)
         {
             player.TakeDamage(playerDamage);
-            SceneManager.LoadScene(game);
+            SceneManager.LoadScene(Level2);
         }
     }
 }
+

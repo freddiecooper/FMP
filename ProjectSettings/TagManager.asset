@@ -10,6 +10,7 @@ TagManager:
   - weapon
   - assultrifle
   - pistol
+  - End
   layers:
   - Default
   - TransparentFX
