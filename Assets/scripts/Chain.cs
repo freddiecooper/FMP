@@ -53,32 +53,45 @@ public class Chain : MonoBehaviour
             dir = dir.normalized;
             origin.AddForce(dir * pullForce);
         }
+        if(Input.GetKey("space"))
+        {
+            transform.position = new Vector2 (20, 25);
+        }
         else
         {
             transform.position += velocity * Time.deltaTime;
             float distance = Vector2.Distance(transform.position, origin.position);
+            
             if(distance > 50 || Input.GetKey("space"))
             {
                 update = false;
                 line.SetPosition(0, Vector2.zero);
                 line.SetPosition(1, Vector2.zero);
+                transform.position = new Vector2 (20, 25);
                 return;
             }
         }
 
-        if(pull && Input.GetKey("space"))
+        if(Input.GetKey("space") && pull)
+        {
+            transform.position = new Vector2 (20, 25);
+        }
+
+        if(Input.GetKey("space"))
         {
             update = false;
             line.SetPosition(0, Vector2.zero);
             line.SetPosition(1, Vector2.zero);
+            pull = false;
             return;
+            transform.position = new Vector2 (20, 25);
         }
         
         line.SetPosition(0, transform.position);
         line.SetPosition(1, origin.position);
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D other)
     {
         velocity = Vector2.zero;
         pull = true;

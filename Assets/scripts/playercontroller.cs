@@ -125,6 +125,7 @@ public class playercontroller : MonoBehaviour
             Destroy(gameObject);
             Scene scene = SceneManager.GetActiveScene();
             SceneManager.LoadScene(scene.name);
+            coins = 0;
         }
     }
 
@@ -132,11 +133,17 @@ public class playercontroller : MonoBehaviour
     {
         if(other.gameObject.CompareTag("coin"))
         {
-            Debug.Log("hi");
             coins++;
-            //keyAmount.text = "coins: " + coins;
             Destroy(other.gameObject);
             coinsText.text = coins.ToString("0");
+        }
+        if(other.gameObject.CompareTag("shop"))
+        {
+            if(Input.GetKeyDown("b"))
+            {
+                coins -= 4;
+            }
+            
         }
     }
 }

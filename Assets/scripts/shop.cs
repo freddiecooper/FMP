@@ -22,10 +22,9 @@ public class shop : MonoBehaviour
         if(other.gameObject.CompareTag("Player") && (playercontroller.coins >= 4))
         {
             Debug.Log("touching");
-            if(Input.GetKey ("b"))
+            if(Input.GetKeyDown("b"))
             {
                 weaponDrop();
-                playercontroller.coins -= 4;
             }
             
         }
@@ -33,13 +32,6 @@ public class shop : MonoBehaviour
 
     void weaponDrop()
     {
-
         Instantiate(weaponPrefab, buyPoint.position, buyPoint.rotation);
-
-        //Instantiate(coinPrefab, buyPoint.position, buyPoint.rotation);
-        //Instantiate(coinPrefab, buyPoint.position, buyPoint.rotation);
-        //Instantiate(coinPrefab, buyPoint.position, buyPoint.rotation);
-        //Instantiate(coinPrefab, buyPoint.position, buyPoint.rotation);
-        //Instantiate(coinPrefab, buyPoint.position, buyPoint.rotation);
     }
 }
