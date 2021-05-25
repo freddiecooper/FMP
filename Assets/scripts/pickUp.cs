@@ -7,7 +7,10 @@ public class pickUp : MonoBehaviour
 
     public Transform A_equipPosition;
     public Transform P_equipPosition;
-    GameObject currentWeapon;
+    public static bool pickedUp_p = false;
+    public static bool pickedUp_a = false;
+    GameObject currentWeapon_P;
+    GameObject currentWeapon_A;
     BoxCollider collider;
 
     bool canGrab_A;
@@ -15,7 +18,8 @@ public class pickUp : MonoBehaviour
 
     void Start()
     {
-        collider = currentWeapon.GetComponent<BoxCollider>();
+        collider = currentWeapon_P.GetComponent<BoxCollider>();
+        collider = currentWeapon_A.GetComponent<BoxCollider>();
     }
 
     void Update()
@@ -23,11 +27,18 @@ public class pickUp : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Z))
         {
-            currentWeapon.transform.parent = null;
+            Debug.Log("hi");
+            pickedUp_p = false;
+            pickedUp_a = false;
+            currentWeapon_P.transform.parent = null;
+            currentWeapon_A.transform.parent = null;
             collider.isTrigger = false;
+            
+            if (!currentWeapon_A.GetComponent<Rigidbody2D>())
+                currentWeapon_A.AddComponent<Rigidbody2D>();
 
-            if (!currentWeapon.GetComponent<Rigidbody2D>())
-                currentWeapon.AddComponent<Rigidbody2D>();
+            if (!currentWeapon_P.GetComponent<Rigidbody2D>())
+                currentWeapon_P.AddComponent<Rigidbody2D>();
         }
 
         if (canGrab_A)
@@ -35,6 +46,13 @@ public class pickUp : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.F))
             {
                 PickUp_A();
+                pickedUp_a = true;
+                pickedUp_p = false;
+                currentWeapon_P.transform.parent = null;
+            }
+            else
+            {
+                //pickedUp = false;
             }
         }
 
@@ -42,7 +60,14 @@ public class pickUp : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.F))
             {
-                PickUp_A();
+                PickUp_P();
+                pickedUp_p = true;
+                pickedUp_a = false;
+                currentWeapon_A.transform.parent = null;
+            }
+            else
+            {
+                //pickedUp = false;
             }
         }
     }
@@ -51,7 +76,7 @@ public class pickUp : MonoBehaviour
     {
         if(other.gameObject.CompareTag("assultrifle"))
         {
-            currentWeapon = other.gameObject;
+            currentWeapon_A = other.gameObject;
             canGrab_A = true;
         }
         else
@@ -61,7 +86,7 @@ public class pickUp : MonoBehaviour
 
         if(other.gameObject.CompareTag("pistol"))
         {
-            currentWeapon = other.gameObject;
+            currentWeapon_P = other.gameObject;
             canGrab_P = true;
         }
         else
@@ -77,18 +102,18 @@ public class pickUp : MonoBehaviour
 
     private void PickUp_A()
     {
-        currentWeapon.transform.position = A_equipPosition.position;
-        currentWeapon.transform.parent = A_equipPosition;
-        currentWeapon.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+        currentWeapon_A.transform.position = A_equipPosition.position;
+        currentWeapon_A.transform.parent = A_equipPosition;
+        currentWeapon_A.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
 
         Debug.Log("picked up");
     }
 
     private void PickUp_P()
     {
-        currentWeapon.transform.position = P_equipPosition.position;
-        currentWeapon.transform.parent = P_equipPosition;
-        currentWeapon.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+        currentWeapon_P.transform.position = P_equipPosition.position;
+        currentWeapon_P.transform.parent = P_equipPosition;
+        currentWeapon_P.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
 
         Debug.Log("picked up");
     }

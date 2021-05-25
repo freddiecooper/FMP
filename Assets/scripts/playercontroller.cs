@@ -16,7 +16,9 @@ public class playercontroller : MonoBehaviour
     public Transform buyPoint;
     public GameObject coinPrefab;
     public Chain pull;
-    public Text coinsText;
+    public Text coinsText1;
+    public static Text coinsText;
+    
 
     private bool FacingRight = true;
     private CapsuleCollider2D capsuleCollider2d;
@@ -36,6 +38,9 @@ public class playercontroller : MonoBehaviour
 
     void Update()
     {
+
+        coinsText = coinsText1;
+        
         if(pull.pull == false)
         {
             float move = Input.GetAxisRaw("Horizontal");
@@ -137,11 +142,12 @@ public class playercontroller : MonoBehaviour
             Destroy(other.gameObject);
             coinsText.text = coins.ToString("0");
         }
-        if(other.gameObject.CompareTag("shop"))
+        if(other.gameObject.CompareTag("shop") && coins >= 4)
         {
             if(Input.GetKeyDown("b"))
             {
-                coins -= 4;
+                //coins -= 4;
+                //coinsText.text = coins.ToString("0");
             }
             
         }

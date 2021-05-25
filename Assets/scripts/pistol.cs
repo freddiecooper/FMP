@@ -20,27 +20,18 @@ public class pistol : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetButtonDown("Fire1") && timeUntilFire < Time.time && touching)
+        if (Input.GetButtonDown("Fire1") && timeUntilFire < Time.time)
         {
-            Shoot();
-            timeUntilFire = Time.time + fireRate;
+            if(pickUp.pickedUp_p)
+            {
+                Shoot();
+                timeUntilFire = Time.time + fireRate;
+            }
         }
-
     }
 
     void Shoot()
     {
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if(other.gameObject.CompareTag("Player"))
-        {
-            if(touching == false)
-            {
-                    touching = true;
-            }
-        }
     }
 }

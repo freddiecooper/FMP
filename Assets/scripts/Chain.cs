@@ -84,7 +84,6 @@ public class Chain : MonoBehaviour
             line.SetPosition(1, Vector2.zero);
             pull = false;
             return;
-            transform.position = new Vector2 (20, 25);
         }
         
         line.SetPosition(0, transform.position);

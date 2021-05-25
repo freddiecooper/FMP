@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class weapon : MonoBehaviour
 {
-
     public float fireRate = 0.2f;
     public Transform firePoint;
     public GameObject bulletPrefab;
@@ -21,12 +20,14 @@ public class weapon : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetButton("Fire1") && timeUntilFire < Time.time && touching)
+        if (Input.GetButton("Fire1") && timeUntilFire < Time.time)
         {
-            Shoot();
-            timeUntilFire = Time.time + fireRate;
+            if(pickUp.pickedUp_a)
+            {
+                Shoot();
+                timeUntilFire = Time.time + fireRate;
+            }
         }
-
     }
 
     void Shoot()
@@ -34,14 +35,5 @@ public class weapon : MonoBehaviour
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
 
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if(other.gameObject.CompareTag("Player"))
-        {
-            if(touching == false)
-            {
-                    touching = true;
-            }
-        }
-    }
+
 }
